@@ -51,11 +51,14 @@ export default function TeamList() {
       role: teamForm.role,
       contact: teamForm.contact,
     };
-  }
+    const newTeamList = teamList.concat(newTeam);
+    setTeamList(newTeamList);
+    setTeamForm(initialTeamForm);
+  };
 
 
   return (
-    <div className='container-hello-world'>
+    <div className='form-container'>
 
       <Form
         // handlers that can change app state
@@ -69,7 +72,7 @@ export default function TeamList() {
       {
         teamList.map(team => (
           <h5 key={team.id}>
-            {team.name} is a {team.role}.
+            {team.name} is a {team.role} for the special team.
           </h5>
         ))
       }
