@@ -6,13 +6,13 @@ import uuid from 'uuid';
 
 
 const initialTeamList = [
-  { id: uuid(), name: 'Blinx', role: 'Backend Developer', contact: 234-456-8900 },
+  { id: uuid(), name: 'Blinx', role: 'Backend Developer', residence: "Abuja" },
 ];
 
 const initialTeamForm = {
   name: '',
   role: '',
-  contact: '',
+  residence: '',
 };
 
 export default function TeamList() {
@@ -23,7 +23,7 @@ export default function TeamList() {
     setTeamForm({
       name: e.target.value,
       role: teamForm.role,
-      contact: teamForm.contact,
+      residence: teamForm.residence,
     });
   };
 
@@ -31,25 +31,25 @@ export default function TeamList() {
     setTeamForm({
       name: teamForm.name,
       role: e.target.value,
-      contact: teamForm.contact
+      residence: teamForm.residence,
     });
   };
 
-  const onContactChange = e => {
+  const onResidenceChange = e => {
     setTeamForm({
       name: teamForm.name,
       role: teamForm.role,
-      contact: e.target.value,
+      residence: e.target.value,
     });
   };
 
-  const onFormSubmit = e => { // we DO need the event object
+  const onFormSubmit = e => {
     e.preventDefault();
     const newTeam = {
       id: uuid(),
       name: teamForm.name,
       role: teamForm.role,
-      contact: teamForm.contact,
+      residence: teamForm.residence,
     };
     const newTeamList = teamList.concat(newTeam);
     setTeamList(newTeamList);
@@ -58,21 +58,19 @@ export default function TeamList() {
 
 
   return (
-    <div className='form-container'>
+    <div className='container'>
 
       <Form
-        // handlers that can change app state
         onNameChange={onNameChange}
         onRoleChange={onRoleChange}
-        onContactChange={onContactChange}
+        onResidenceChange={onResidenceChange}
         onFormSubmit={onFormSubmit}
-        // data we need to hydrate the form inputs
         teamForm={teamForm}
       />
       {
         teamList.map(team => (
           <h5 key={team.id}>
-            {team.name} is a {team.role} for the special team.
+            {team.name} is a {team.role} for the special team, and is based at {team.residence}.
           </h5>
         ))
       }

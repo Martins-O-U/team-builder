@@ -1,17 +1,19 @@
 import React from 'react';
+
+
 function Form(props) {
-    const { onNameChange, onRoleChange, onContactChange, onFormSubmit } = props;
-    const { name, role, contact } = props.teamForm;
+    const { onNameChange, onRoleChange, onResidenceChange, onFormSubmit } = props;
+    const { name, role, residence } = props.teamForm;
     const isDisabled = () => {
-      if (!name || !role || !contact) {
+      if (!name || !role || !residence) {
         return true;
       }
       return false;
     };
   
     return (
-      <form>
-        <label htmlFor='nameInput'>Name</label>
+      <form className= "form-container">
+        <label htmlFor='nameInput'>Full Name</label>
         <input
           value={name}
           onChange={onNameChange}
@@ -27,19 +29,19 @@ function Form(props) {
           type='text'
         />
 
-        <label htmlFor='contactInput'>Contact</label>
+        <label htmlFor='residenceInput'>Residence</label>
         <input
-          value={contact}
-          onChange={onContactChange}
-          id='contactInput'
-          type='number'
+          value={residence}
+          onChange={onResidenceChange}
+          id='residenceInput'
+          type='text'
         />
   
         <button
           disabled={isDisabled()}
           onClick={onFormSubmit}
         >
-          submit
+          Submit
         </button>
       </form>
     );
