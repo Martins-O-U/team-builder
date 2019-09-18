@@ -15,3 +15,24 @@ const initialTeamForm = {
   contact: '',
 };
 
+export default function TeamList() {
+  const [teamList, setTeamList] = useState(initialTeamList);
+  const [teamForm, setTeamForm] = useState(initialTeamForm);
+ 
+
+  return (
+    <div className='container-hello-world'>
+
+      <Form
+        teamForm={teamForm}
+      />
+      {
+        teamList.map(team => (
+          <h5 key={team.id}>
+            {team.name} is a {team.role}.
+          </h5>
+        ))
+      }
+    </div>
+  );
+}
